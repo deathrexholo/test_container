@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: containerization/Dockerfile
+      args:
+        # Pass these from your .env file or environment
+        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL}
+        VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY}
+        VITE_USE_MOCK_AUTH: ${VITE_USE_MOCK_AUTH}
+    ports:
+      - "8080:80"
+    restart: always

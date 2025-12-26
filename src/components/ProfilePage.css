@@ -1,0 +1,155 @@
+.profile-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: white;
+}
+
+.profile-container.loading {
+  font-size: 1.5rem;
+  color: #ff69b4;
+}
+
+.profile-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 2rem;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(45deg, #ff1493, #8a2be2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0 auto 1rem auto;
+  box-shadow: 0 8px 25px rgba(255, 20, 147, 0.3);
+  border: 4px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile-header h1 {
+  margin: 0.5rem 0;
+  font-size: 2rem;
+}
+
+.role-badge {
+  background: rgba(255, 20, 147, 0.2);
+  color: #ff69b4;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid rgba(255, 20, 147, 0.3);
+}
+
+.email-text {
+  color: #ccc;
+  margin-top: 1rem;
+}
+
+.profile-content {
+  margin-bottom: 2rem;
+}
+
+.athlete-stats h2 {
+  color: #ff69b4;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #ff1493;
+  padding-left: 1rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-item {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}
+
+.detail-section {
+  margin-bottom: 1.5rem;
+}
+
+.detail-section h3 {
+  font-size: 1rem;
+  color: #aaa;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.detail-section p {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 10px;
+  line-height: 1.5;
+}
+
+.detail-section p.long-text {
+  white-space: pre-wrap;
+}
+
+.profile-actions {
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+}
+
+.logout-btn {
+  background: transparent;
+  border: 1px solid #ff1493;
+  color: #ff1493;
+  padding: 0.8rem 2rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.logout-btn:hover {
+  background: #ff1493;
+  color: white;
+  box-shadow: 0 0 15px rgba(255, 20, 147, 0.5);
+}

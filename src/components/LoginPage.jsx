@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import useTranslation from '../hooks/useTranslation';
+import { useAuth } from '../contexts/AuthContext';
 import './LoginPage.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const { role } = useParams();
   const { t } = useTranslation();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const roleInfo = {
     athlete: { 
@@ -42,12 +46,23 @@ const LoginPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Login attempt:', { role, ...formData });
-    // For now, just navigate to a success page or dashboard
-    alert(`${t('welcome')} ${t(roleInfo[role]?.title)}! ${t('loginFunctionalityComingSoon')}`);
+    setLoading(true);
+    setError(null);
+
+    const { data, error } = await login(formData.email, formData.password);
+
+    if (error) {
+      console.error('Login error:', error);
+      setError(error.message || 'Failed to login');
+      setLoading(false);
+    } else {
+      console.log('Login successful:', data);
+      setLoading(false);
+      // alert('Login Successful!'); // Removed alert for smoother UX
+      navigate('/profile');
+    }
   };
 
   const currentRole = roleInfo[role];
@@ -62,6 +77,8 @@ const LoginPage = () => {
           <h1 className="login-title">{t('loginAs')} {t(currentRole?.title)}</h1>
           <p className="login-subtitle">{t('enterCredentials')}</p>
         </div>
+
+        {error && <div className="error-message" style={{ color: 'red', marginBottom: '1rem', textAlign: 'center' }}>{error}</div>}
 
         <form onSubmit={handleSubmit} className="login-form">
           <div className="input-group">
@@ -90,13 +107,13 @@ const LoginPage = () => {
             />
           </div>
 
-          <button type="submit" className="login-submit-btn">
-            {t('login')}
+          <button type="submit" className="login-submit-btn" disabled={loading}>
+            {loading ? 'Logging in...' : t('login')}
           </button>
         </form>
 
         <div className="login-footer">
-          <p>{t('dontHaveAccount')} <span className="register-link">{t('signUp')}</span></p>
+          <p>{t('dontHaveAccount')} <span className="register-link" onClick={() => navigate(`/signup/${role}`)}>{t('signUp')}</span></p>
           <button 
             className="back-to-roles-btn"
             onClick={() => navigate('/role-selection')}
